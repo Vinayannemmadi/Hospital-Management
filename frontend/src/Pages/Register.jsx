@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { Context } from "../main";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ const Register = () => {
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
-
+  const [cpassword,setCPassword]=useState("");
   const navigateTo = useNavigate();
 
   const handleRegistration = async (e) => {
@@ -91,12 +91,11 @@ const Register = () => {
             />
           </div>
           <div>
-            <input
-              type="number"
-              placeholder="NIC"
-              value={nic}
-              onChange={(e) => setNic(e.target.value)}
-            />
+            <select value={gender} onChange={(e) => setGender(e.target.value)}>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
             <input
               type={"date"}
               placeholder="Date of Birth"
@@ -105,18 +104,21 @@ const Register = () => {
             />
           </div>
           <div>
-            <select value={gender} onChange={(e) => setGender(e.target.value)}>
-              <option value="">Select Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-            </select>
+            
             <input
-              type="password"
+              type="text"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <input
+              type="text"
+              placeholder="Confirm Password"
+              value={cpassword}
+              onChange={(e) => setCPassword(e.target.value)}
+            />
           </div>
+          <div><p>Are you a Doctor  <input type="checkbox"></input></p></div>
           <div
             style={{
               gap: "10px",
@@ -124,9 +126,10 @@ const Register = () => {
               flexDirection: "row",
             }}
           >
+  
             <p style={{ marginBottom: 0 }}>Already Registered?</p>
             <Link
-              to={"/signin"}
+              to={"/login"}
               style={{ textDecoration: "none", color: "#271776ca" }}
             >
               Login Now

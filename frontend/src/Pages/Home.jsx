@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+// import { useContext } from "react";
 import Hero from "../components/Hero";
 import Biography from "../components/Biography";
 import MessageForm from "../components/MessageForm";
@@ -16,6 +16,7 @@ const Home = () => {
       <Biography imageUrl={"/about.png"} />
       <Departments />
       <MessageForm />
+      <div style={{color:"red",backgroundColor:"black"}}>x</div>
     </>
   );
 };

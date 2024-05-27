@@ -9,17 +9,17 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
+  const [error,setError]=useState("");
   const navigateTo = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+     
       await axios
         .post(
-          "http://localhost:4000/api/v1/user/login",
-          { email, password, confirmPassword, role: "Patient" },
+          "http://localhost:4000/api/auth/login",
+          { email, password,  role: "Patient" },
           {
             withCredentials: true,
             headers: { "Content-Type": "application/json" },
@@ -31,9 +31,11 @@ const Login = () => {
           navigateTo("/");
           setEmail("");
           setPassword("");
-          setConfirmPassword("");
         });
     } catch (error) {
+      if(error.response){
+      setError(error.response.data);}
+      setError("Unknown error occured. Please try again later");
       toast.error(error.response.data.message);
     }
   };
@@ -48,8 +50,7 @@ const Login = () => {
         <h2>Sign In</h2>
         <p>Please Login To Continue</p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat culpa
-          voluptas expedita itaque ex, totam ad quod error?
+          We are happy to welcome you to ZEECAERE family. We make sure that you have  a pleasant experience.  
         </p>
         <form onSubmit={handleLogin}>
           <input
@@ -64,12 +65,8 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+          
+          {error && <div style={{fontSize:20,color:'red'}}>{error}</div>}
           <div
             style={{
               gap: "10px",

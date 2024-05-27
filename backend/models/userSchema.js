@@ -25,12 +25,6 @@ const userSchema = new mongoose.Schema({
     minLength: [11, "Phone Number Must Contain Exact 11 Digits!"],
     maxLength: [11, "Phone Number Must Contain Exact 11 Digits!"],
   },
-  nic: {
-    type: String,
-    required: [true, "NIC Is Required!"],
-    minLength: [13, "NIC Must Contain Only 13 Digits!"],
-    maxLength: [13, "NIC Must Contain Only 13 Digits!"],
-  },
   dob: {
     type: Date,
     required: [true, "DOB Is Required!"],
@@ -45,11 +39,6 @@ const userSchema = new mongoose.Schema({
     required: [true, "Password Is Required!"],
     minLength: [8, "Password Must Contain At Least 8 Characters!"],
     select: false,
-  },
-  role: {
-    type: String,
-    required: [true, "User Role Required!"],
-    enum: ["Patient", "Doctor", "Admin"],
   },
   doctorDepartment:{
     type: String,
