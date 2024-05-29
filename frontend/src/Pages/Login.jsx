@@ -28,6 +28,7 @@ const Login = () => {
         console.log(data);
         cookies.set("jwttoken",data.token);
         cookies.set("isdoctor",data.isdoctor);
+        navigateTo('/');
     } catch (error) {
       console.log(error.response.data);
       if(error.response){

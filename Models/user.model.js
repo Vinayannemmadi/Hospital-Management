@@ -12,9 +12,7 @@ const mongoose=require('mongoose');
     mobile:   {type:Number},
     password: {type:String},
     dob:      {type:String},
-    gender:   {type:String},
-    nic:      {type:String},
-    
+    gender:   {type:String},    
  }));
 
  module.exports=User;
