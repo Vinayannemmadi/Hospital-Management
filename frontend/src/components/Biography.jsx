@@ -11,23 +11,15 @@ const Biography = ({imageUrl}) => {
           <p>Biography</p>
           <h3>Who We Are</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-            blanditiis sequi aperiam. Debitis fugiat harum ex maxime illo
-            consequatur mollitia voluptatem omnis nihil nesciunt beatae esse
-            ipsam, sapiente totam aspernatur porro ducimus aperiam nisi. Ex
-            magnam voluptatum consectetur reprehenderit fugiat recusandae aut
-            similique illum natus velit, praesentium nostrum nesciunt. Deleniti,
-            nesciunt laboriosam totam iusto!
+          ZEE CARE is a pioneering organization dedicated to revolutionizing the healthcare industry through innovative hospital management solutions. Established with a vision to enhance the efficiency and effectiveness of healthcare facilities, ZEE CARE specializes in providing cutting-edge Hospital Management Systems (HMS) tailored to meet the dynamic needs of hospitals, clinics, and other healthcare institutions.
           </p>
           <p>We are all in 2024!</p>
-          <p>We are working on a MERN STACK PROJECT.</p>
+          <br/>
+          <h4 style={{color:"#363636"}}>
+            Our Mission:
+          </h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-            assumenda exercitationem accusamus sit repellendus quo optio dolorum
-            corporis corrupti. Quas similique vel minima veniam tenetur
-            obcaecati atque magni suscipit laboriosam! Veniam vitae minus nihil
-            cupiditate natus provident. Ex illum quasi pariatur odit nisi
-            voluptas illo qui ipsum mollitia. Libero, assumenda?
+            At ZEE CARE, our mission is to empower healthcare providers with the tools and technology necessary to deliver superior patient care. We strive to streamline hospital operations, reduce administrative burdens, and facilitate seamless communication across departments, ensuring that healthcare professionals can focus on what they do best—caring for patients.
           </p>
           <p>Lorem ipsum dolor sit amet!</p>
           <p>Coding is fun!</p>

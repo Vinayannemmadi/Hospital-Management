@@ -1,12 +1,12 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { Context } from "../main";
 import { Link, useNavigate, Navigate } from "react-router-dom";
-
+import Cookies from "universal-cookie";
 const Login = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
-
+  const cookies=new Cookies();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error,setError]=useState("");
@@ -16,27 +16,24 @@ const Login = () => {
     e.preventDefault();
     try {
      
-      await axios
+     let {data}= await axios
         .post(
-          "http://localhost:4000/api/auth/login",
+          "http://localhost:4000/api/auth/signin",
           { email, password,  role: "Patient" },
           {
             withCredentials: true,
             headers: { "Content-Type": "application/json" },
           }
         )
-        .then((res) => {
-          toast.success(res.data.message);
-          setIsAuthenticated(true);
-          navigateTo("/");
-          setEmail("");
-          setPassword("");
-        });
+        console.log(data);
+        cookies.set("jwttoken",data.token);
+        cookies.set("isdoctor",data.isdoctor);
     } catch (error) {
+      console.log(error.response.data);
       if(error.response){
-      setError(error.response.data);}
-      setError("Unknown error occured. Please try again later");
-      toast.error(error.response.data.message);
+        setError(error.response.data);}
+      else setError("Unknown error occured. Please try again later");
+      toast.error(error.response.data);
     }
   };
 
@@ -57,13 +54,13 @@ const Login = () => {
             type="text"
             placeholder="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)&& setError("")}
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value) && setError("")}
           />
           
           {error && <div style={{fontSize:20,color:'red'}}>{error}</div>}

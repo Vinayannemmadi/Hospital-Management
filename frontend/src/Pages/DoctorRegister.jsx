@@ -3,10 +3,10 @@ import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { Context } from "../main";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-
-const Register = () => {
+import Cookies from 'universal-cookie';
+const DoctorRegister = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
-
+  const cookies=new Cookies();
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,32 +16,30 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [cpassword,setCPassword]=useState("");
   const navigateTo = useNavigate();
-  const [isdoctor,setDoctor]=useState(false);
+  const [dept,setDept]=useState("");
+  const [address,setAddress]=useState("");
+  const [hospital,setHospital]=useState("");
+  const [experience,setExperience]=useState("");
   const [error,setError]=useState("");
   const handleRegistration = async (e) => {
     e.preventDefault();
     try {
-      await axios
-        .post(
+     let data = await axios.post(
           "http://localhost:4000/api/auth/signup",
-          { firstname, lastname, email, mobile:phone, dob, gender, password ,isdoctor},
+          { firstname, lastname, email, mobile:phone, dob,
+             gender, password ,isdoctor:true,role:"doctor",dept,
+            address,hospital,experience
+          },
           {
             withCredentials: true,
             headers: { "Content-Type": "application/json" },
           }
-        )
-        .then((res) => {
-          toast.success(res.data.message);
-          setIsAuthenticated(true);
-          navigateTo("/");
-          setFirstName("");
-          setLastName("");
-          setEmail("");
-          setPhone("");
-          setDob("");
-          setGender("");
-          setPassword("");
-        });
+        );
+        console.log(data);
+        
+        toast.success(data.message);
+        navigateTo("/");
+        
     } catch (error) {
       setError(error.response.data);
       console.log(error.response.data);
@@ -56,7 +54,7 @@ const Register = () => {
   return (
     <>
       <div className="container form-component register-form">
-        <h2>Sign Up</h2>
+        <h2>Sign Up as Doctor</h2>
         <p>Please Sign Up To Continue</p>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat culpa
@@ -111,7 +109,42 @@ const Register = () => {
             />
           </div>
           <div>
-            
+            <select  required={true} value={dept} onChange={(e) => setDept(e.target.value)}>
+              <option value="">Select Department</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Oncology">Oncology</option>
+              <option value="Radiology">Radiology</option>
+              <option value="Dermatology">Dermatology</option>
+              <option value="ENT">ENT</option>
+            </select>
+            <input
+              type="textarea"
+              required={true}
+              placeholder="Address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              required={true}
+              placeholder="Hospital Name"
+              value={hospital}
+              onChange={(e) => setHospital(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Year of experience"
+              value={experience}
+              required={true}
+              onChange={(e) => setExperience(e.target.value)}
+            />
+          </div>
+          <div>
             <input
               type="text"
               required={true}
@@ -127,7 +160,7 @@ const Register = () => {
               onChange={(e) => setCPassword(e.target.value)}
             />
           </div>
-          <div><Link to="/doctorregister">Register as Doctor  </Link></div>
+          <div><Link to="/register">Register as Patient  </Link></div>
           <div
             style={{
               gap: "10px",
@@ -153,4 +186,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default DoctorRegister;

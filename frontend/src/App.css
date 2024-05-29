@@ -587,3 +587,11 @@ input[type="time"]:before {
 footer .logo-img{
   width: 100%;
 }
+
+.dept{
+  display: flex;
+  gap: 50px;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  position: relative;
+}
