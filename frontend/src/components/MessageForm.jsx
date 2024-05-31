@@ -37,7 +37,7 @@ const MessageForm = () => {
   return (
     <>
       <div className="container form-component message-form">
-        <h2>Send Us A Message</h2>
+        <h2>Share Us your problem</h2>
         <form onSubmit={handleMessage}>
           <div>
             <input
@@ -45,12 +45,6 @@ const MessageForm = () => {
               placeholder="First Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
           <div>
@@ -69,7 +63,7 @@ const MessageForm = () => {
           </div>
           <textarea
             rows={7}
-            placeholder="Message"
+            placeholder="Problem"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />

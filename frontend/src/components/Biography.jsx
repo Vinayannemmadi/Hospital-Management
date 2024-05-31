@@ -21,8 +21,7 @@ const Biography = ({imageUrl}) => {
           <p>
             At ZEE CARE, our mission is to empower healthcare providers with the tools and technology necessary to deliver superior patient care. We strive to streamline hospital operations, reduce administrative burdens, and facilitate seamless communication across departments, ensuring that healthcare professionals can focus on what they do best—caring for patients.
           </p>
-          <p>Lorem ipsum dolor sit amet!</p>
-          <p>Coding is fun!</p>
+          
         </div>
       </div>
     </>

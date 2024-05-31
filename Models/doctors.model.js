@@ -9,7 +9,7 @@ const Doctor=mongoose.model('Doctors',new mongoose.Schema({
     },
     firstname:{type:String},
     lastname: {type:String},
-    mobile:   {type:Number},
+    mobile:   {type:Number},    
     password: {type:String},
     dob:      {type:String},
     gender:   {type:String},   

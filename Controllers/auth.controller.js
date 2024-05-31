@@ -17,9 +17,9 @@ const signup=async(req,res,next)=>{
         const doctorexist=await Doctor.findOne({email:email});
         if(doctorexist) return res.status(400).send("Doctor already exist with this email!");
         if(req.body.isdoctor){
-            const {dept,hosptial,address,experience}=req.body;
+            const {dept,hospital,address,experience}=req.body;
             const doctor=new Doctor({firstname,lastname,mobile,dob,gender
-                ,password,email,dept,hosptial,experience,address});
+                ,password,email,dept,hospital,experience,address});
             const salt=await bcryptjs.genSalt(10);
             const newPassword=await bcryptjs.hash(password,salt);
             doctor.password=newPassword;

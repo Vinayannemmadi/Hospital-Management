@@ -8,6 +8,7 @@ import Department from "./Pages/Department";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import DoctorRegister from "./Pages/DoctorRegister";
+import DoctorDetails from "./Pages/DoctorDetails";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./Pages/Login";
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/department/:id" element={<Department />} />
           <Route path="/doctorregister" element={<DoctorRegister />} />
+          <Route path="/doctor/:id" element={<DoctorDetails />} />
         </Routes>
         <Footer />
         <ToastContainer position="top-center" />

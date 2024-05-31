@@ -1,29 +1,31 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import axios from "axios";
-import { toast } from "react-toastify";
+// import axios from "axios";
+// import { toast } from "react-toastify";
 import { Context } from "../main";
-
+import Cookies from "universal-cookie";
 const Navbar = () => {
   const [show, setShow] = useState(true);
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
-
+  const cookies=new Cookies();
   const handleLogout = async () => {
-    setShow(!show);
-    // await axios
-    //   .get("http://localhost:4000/api/v1/user/patient/logout", {
-    //     withCredentials: true,
-    //   })
-    //   .then((res) => {
-    //     toast.success(res.data.message);
-    //     setIsAuthenticated(false);
-    //   })
-    //   .catch((err) => {
-    //     toast.error(err.response.data.message);
-    //   });
+    try {
+      cookies.remove("jwttoken");
+      cookies.remove("isdoctor");
+      setIsAuthenticated(false);
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
-
+  useEffect(()=>{
+    async function checkAuth(){
+        if(cookies.get("jwttoken")){
+            setIsAuthenticated(true);
+        }
+    }
+    checkAuth();
+  },[])
   const navigateTo = useNavigate();
 
   const goToLogin = () => {
@@ -50,6 +52,9 @@ const Navbar = () => {
             <Link to={"/about"} onClick={() => setShow(!show)}>
               About Us
             </Link>
+          {isAuthenticated && (
+            <Link to={"/notifications"} onClick={() => setShow(!show)}>Notifiations</Link>)
+          }
           </div>
           {isAuthenticated ? (
             <button className="logoutBtn btn" onClick={ handleLogout}>
