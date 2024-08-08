@@ -18,7 +18,7 @@ const DoctorDetails = () => {
                 const d = await axios.
                 get(`http://localhost:4000/api/doctors/${id}`);
                 setDoctor(d.data);
-                console.log(d.data);
+                // console.log(d.data);
             } catch(error){
                 console.log(error.response);
             }
@@ -45,7 +45,7 @@ const DoctorDetails = () => {
             </div>
             
         </div>
-        <Booking id={id}/>
+        <Booking id={id} dept={doctor.dept}/>
         </>
     )
 }

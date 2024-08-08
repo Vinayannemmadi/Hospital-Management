@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { IoPersonCircle } from "react-icons/io5";
 // import axios from "axios";
 // import { toast } from "react-toastify";
 import { Context } from "../main";
@@ -9,6 +10,7 @@ const Navbar = () => {
   const [show, setShow] = useState(true);
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
   const cookies=new Cookies();
+  const isadmin=cookies.get("isadmin");
   const handleLogout = async () => {
     try {
       cookies.remove("jwttoken");
@@ -46,20 +48,30 @@ const Navbar = () => {
             <Link to={"/"} onClick={() => setShow(!show)}>
               Home
             </Link>
-            <Link to={"/appointment"} onClick={() => setShow(!show)}>
+            {!isadmin && <Link to={"/appointment"} onClick={() => setShow(!show)}>
               Appointment
-            </Link>
-            <Link to={"/about"} onClick={() => setShow(!show)}>
+            </Link>}
+            {!isadmin && <Link to={"/about"} onClick={() => setShow(!show)}>
               About Us
-            </Link>
+            </Link>}
           {isAuthenticated && (
             <Link to={"/notifications"} onClick={() => setShow(!show)}>Notifiations</Link>)
           }
+          {isadmin && <Link to={"/doctorsList"} onClick={() => setShow(!show)}>
+              Doctors
+            </Link>}
+          {isadmin && <Link to={"/patientsList"} onClick={() => setShow(!show)}>
+              Patients
+            </Link>}
+            
           </div>
           {isAuthenticated ? (
-            <button className="logoutBtn btn" onClick={ handleLogout}>
-              LOGOUT
-            </button>
+            <Link to="/profile" className="logoutbtn" 
+              style={{color:'black' ,backgroundColor: "transparent",
+                border:"none"
+              }} onClick={() => setShow(!show)}>
+              <IoPersonCircle size={40} />
+            </Link>
           ) : (
             <button className="loginBtn btn" onClick={ goToLogin}>
               LOGIN
@@ -68,6 +80,7 @@ const Navbar = () => {
         </div>
         <div className="hamburger" onClick={() => setShow(!show)}>
           <GiHamburgerMenu />
+          
         </div>
       </nav>
     </>

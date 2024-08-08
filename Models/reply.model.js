@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 
 
-const Message=mongoose.model('messages',new mongoose.Schema({
+const Reply=mongoose.model('reply',new mongoose.Schema({
     from:{type:mongoose.Types.ObjectId},
     to:{type:mongoose.Types.ObjectId},
     text:{type:String},
@@ -11,5 +11,4 @@ const Message=mongoose.model('messages',new mongoose.Schema({
     mobile:Number,
 }))
 
-
-module.exports=Message;
+module.exports=Reply;

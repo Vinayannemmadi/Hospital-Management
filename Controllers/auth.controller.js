@@ -75,7 +75,32 @@ const validateToken=(req,res,next)=>{
         req.user=decoded;
         next();
     });
-}
+};
+const getProfile= async(req, res,next) => {
+    try {
+        const error=validateToken(req,res,next);
+        const { _id } = req.user;
+        console.log("User ID from token:", _id);
+
+        const user = await User.findOne({ _id });
+        if(user)return res.send(user);
+         return res.send("No user found!");
+        // if (!user) {
+        //     const doctor=await Doctor.findOne({_id});
+        //     if(doctor)
+        //         return res.send(doctor);
+        //     else 
+        //         return res.status(400).send("This user has already been deleted!!");
+        // }
+        // else{
+        //     console.log("User found:", user);
+        //     return  res.send(user);
+        //      return ;
+        // }
+    } catch (error) {
+        console.error("Server error:", error);
+    }
+};
 const deleteAcc=async(req,res,next)=>{
     const {token}=req.body;
     console.log(token);
@@ -103,5 +128,6 @@ const deleteAcc=async(req,res,next)=>{
         // res.status(400).send("Unable to delete Account!");
     }
     
-}
-module.exports={signin,signup,deleteAcc};
+};
+
+module.exports={signin,signup,deleteAcc,getProfile};

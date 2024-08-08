@@ -171,14 +171,15 @@ h6 {
 .form-component form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
 }
 .form-component form div {
   display: flex;
-  gap: 30px;
+  gap: 10px;
 }
 .form-component form input,
 .form-component form select,
+.form-component form option,
 .form-component form textarea {
   flex: 1;
   font-size: 24px;
@@ -237,8 +238,8 @@ h6 {
 }
 @media (max-width: 888px) {
   .form-component {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom:30px;
   }
   .form-component form div {
     flex-direction: column;
@@ -681,4 +682,207 @@ form button:hover {
 
 form button:active {
   background-color: #003d80;
+}
+/* profile */
+/* src/Profile.css */
+
+.profileCard{
+
+  margin-top: 140px;
+  min-height: 80vh;
+}
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.profile-avatar img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.profile-details {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-details h1 {
+  margin-bottom: 10px;
+}
+
+/* Notifications page  */
+.notification-card{
+  margin-top: 130px;
+  min-height: 80vh;
+}
+.notifications-container {
+  margin-top: 130px;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top:10px;
+  padding-top: 20px;
+}
+
+.notifications-list {
+  list-style: none;
+  padding: 0;
+}
+
+.notification-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.notification-content {
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.notification-text {
+  flex: 1;
+}
+
+.notification-time {
+  color: #888;
+  text-align: end;
+  margin-top: 5px;
+}
+.messageForm-replyBtn{
+  background: linear-gradient(140deg, #9083d5, #271776ca);
+  border-radius: 5px;
+  width: 50px;
+  height: 40px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  /* margin: auto; */
+}
+/* message container box  */
+
+.message-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.reply-container{
+  display:flex;
+  width:100%;
+  height:40;
+  justify-content:center;
+  align-items:center ;
+  gap:10px;
+  margin-bottom:10px;
+  margin-top:10px;
+}
+.appointments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.appointment-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-card p {
+  margin: 5px 0;
+}
+
+.appointment-card label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.appointment-card select {
+  padding: 5px;
+}
+
+/* profile  --->*/
+.profile-buttons-container{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.profileBtn {
+  background: linear-gradient(140deg, #9083d5, #271776ca);
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 15px 32px; /* Some padding */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Make the button inline element */
+  font-size: 16px; /* Increase font size */
+  margin: 4px 2px; /* Add some margin */
+  cursor: pointer; /* Pointer/hand icon on hover */
+  border-radius: 12px; /* Rounded corners */
+  transition-duration: 0.4s; /* Transition effect */
+}
+
+.profileBtn:hover {
+  background: white; /* White background on hover */
+  color: black; /* Black text on hover */
+  border: 2px solid #4CAF50; /* Green border */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+table th, table td {
+  padding: 12px 15px;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+.doctorsList{
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px
 }

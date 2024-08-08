@@ -11,12 +11,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error,setError]=useState("");
   const navigateTo = useNavigate();
-
+  const[admin,setAdmin]=useState(false);
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-     
-     let {data}= await axios
+     let data;
+     if(!admin){
+     data= await axios
         .post(
           "http://localhost:4000/api/auth/signin",
           { email, password,  role: "Patient" },
@@ -25,12 +26,22 @@ const Login = () => {
             headers: { "Content-Type": "application/json" },
           }
         )
-        console.log(data);
-        cookies.set("jwttoken",data.token);
-        cookies.set("isdoctor",data.isdoctor);
+        console.log(data.data);
+        cookies.set("jwttoken",data.data.token);
+        cookies.set("isdoctor",data.data.isdoctor);
+        // cookies.set("isadmin",data.data.isadmin);
+      }
+      else{
+        console.log(admin);
+        data=await axios.post("http://localhost:4000/api/auth/admin/signin",{email,password});
+        console.log(data.data);
+        cookies.set("jwttoken",data.data.id);
+        cookies.set("isdoctor",false);
+        cookies.set("isadmin",true);
+      }
         navigateTo('/');
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error);
       if(error.response){
         setError(error.response.data);}
       else setError("Unknown error occured. Please try again later");
@@ -38,9 +49,7 @@ const Login = () => {
     }
   };
 
-  if (isAuthenticated) {
-    return <Navigate to={"/"} />;
-  }
+  
 
   return (
     <>
@@ -72,6 +81,10 @@ const Login = () => {
               flexDirection: "row",
             }}
           >
+            <p>Signin as Admin <input type="checkbox" 
+              style={{width:30,height:15,textAlign:"center"}}
+              value={admin} onClick={()=>setAdmin(!admin)}
+              ></input></p><br/>
             <p style={{ marginBottom: 0 }}>Not Registered?</p>
             <Link
               to={"/register"}
@@ -79,6 +92,7 @@ const Login = () => {
             >
               Register Now
             </Link>
+            
           </div>
           <div style={{ justifyContent: "center", alignItems: "center" }}>
             <button type="submit">Login</button>

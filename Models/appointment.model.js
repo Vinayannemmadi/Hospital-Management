@@ -1,23 +1,24 @@
 const mongoose=require('mongoose');
 const User=require('./user.model');
- const User=mongoose.model('Users',new mongoose.Schema({
+const Doctor=require("./doctors.model");
+
+ const Appointment=mongoose.model('Appointments',new mongoose.Schema({
     userid:{type:mongoose.Schema.Types.ObjectId,ref:"User"},
-    emial:{
-        type:String,
-        minlength:10,
-        unique:true,
-        required:true
-    },
+    email:{type:String,},
     firstname:{type:String},
     lastname: {type:String},
     mobile:   {type:String},
     dob:      {type:Date},
     gender:   {type:String},
-    nic:      {type:String},
-    appointmentdate:{type:Date},
-    pediatrics:{type:String},
+    appointmentDate:{type:Date},
+    appointmentTime:{type:String},
+    dept:{type:String},
     address:String,
-    visited:Boolean
+    appointedTo:{type:mongoose.Schema.Types.ObjectId,ref:"Doctor"},
+    problem:String,
+    visited:Boolean,
+    status:String,
+    isSpecial:Boolean
  }));
 
- module.exports=User;
+ module.exports=Appointment;
